@@ -264,13 +264,13 @@ void drvTetrAMM::readThread(void)
                 for (i=0; i<=numChannels_; i++) swapDouble(charData + i*bytesPerValue);
             }
             lastValue = i64Data[numChannels_];
-            switch(lastValue) {
-                case 0xfff40002ffffffffll:
+            switch((unsigned long long)lastValue) {
+                case 0xfff40002ffffffffull:
                     // This is a signalling Nan at the end of normal data
                     for (i=numChannels_; i<4; i++) f64Data[i] = 0.0;
                     computePositions(f64Data);
                    break;
-                case 0xfff40000ffffffffll:
+                case 0xfff40000ffffffffull:
                     // This is a signalling Nan on the rising edge of a trigger
                     numTrigStarts++;
                     if (nextExpectedEdge != 0) {
@@ -280,7 +280,7 @@ void drvTetrAMM::readThread(void)
                     }
                     nextExpectedEdge = 1;
                     break;
-                case 0xfff40001ffffffffll:
+                case 0xfff40001ffffffffull:
                     // This is a signalling Nan on the falling edge of a trigger
                     numTrigEnds++;
                     if (triggerMode == QETriggerModeExtBulb) {
@@ -293,7 +293,7 @@ void drvTetrAMM::readThread(void)
                     }
                     nextExpectedEdge = 0;
                     break;
-                case 0xfff40003ffffffffll:
+                case 0xfff40003ffffffffull:
                     // This is a signaling Nan when the acquistion was stopped
                     asynPrint(pasynUserSelf, ASYN_TRACEIO_DRIVER,
                             "%s::%s: seen acq done sNaN (0xfff40003ffffffffll)\n",

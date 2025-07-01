@@ -73,6 +73,7 @@ PROD_LIBS_vxWorks += $(EPICS_BASE_IOC_LIBS)
 
 include $(ADCORE)/ADApp/commonLibraryMakefile
 include $(ADCORE)/ADApp/commonDriverMakefile
+
 $(PROD_NAME)_DBD += drvAsynIPPort.dbd
 $(PROD_NAME)_DBD += drvAHxxx.dbd
 $(PROD_NAME)_DBD += drvTetrAMM.dbd
@@ -82,6 +83,9 @@ $(PROD_NAME)_DBD += drvNSLS2_EM.dbd
 $(PROD_NAME)_DBD += drvPCR4.dbd
 $(PROD_NAME)_DBD += drvT4U_EM.dbd
 $(PROD_NAME)_DBD += drvT4UDirect_EM.dbd
+
+$(PROD_NAME)_DBD += NDFileNetCDF.dbd
+$(PROD_NAME)_DBD += NDFileHDF5.dbd
 
 $(PROD_NAME)_DBD += busySupport.dbd
 $(PROD_NAME)_DBD += calcSupport.dbd

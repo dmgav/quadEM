@@ -63,6 +63,10 @@ endif
 PROD_LIBS += busy
 PROD_LIBS += calc
 
+PROD_LIBS += autosave
+PROD_LIBS += devIocStats
+PROD_LIBS += reccaster
+
 # Need to put this in or there are missing symbols on vxWorks because Ipac and IpUnidig are linked
 # in after PROD_LIBS, which has EPICS_BASE_IOC_LIBS from commonDriverMakefile
 PROD_LIBS_vxWorks += $(EPICS_BASE_IOC_LIBS)
@@ -81,8 +85,9 @@ $(PROD_NAME)_DBD += drvT4UDirect_EM.dbd
 
 $(PROD_NAME)_DBD += busySupport.dbd
 $(PROD_NAME)_DBD += calcSupport.dbd
-#$(PROD_NAME)_DBD += devIocStats.dbd
-#$(PROD_NAME)_DBD += asSupport.dbd
+$(PROD_NAME)_DBD += devIocStats.dbd
+$(PROD_NAME)_DBD += asSupport.dbd
+$(PROD_NAME)_DBD += reccaster.dbd
 
 PROD_NAME = quadEMTestApp
 

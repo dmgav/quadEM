@@ -93,6 +93,15 @@ $(PROD_NAME)_DBD += devIocStats.dbd
 $(PROD_NAME)_DBD += asSupport.dbd
 $(PROD_NAME)_DBD += reccaster.dbd
 
+
+# Link QSRV (pvAccess Server) if available
+ifdef EPICS_QSRV_MAJOR_VERSION
+    PROD_LIBS += qsrv
+    PROD_LIBS += $(EPICS_BASE_PVA_CORE_LIBS)
+    $(PROD_NAME)_DBD += PVAServerRegister.dbd
+    $(PROD_NAME)_DBD += qsrv.dbd
+endif
+
 PROD_NAME = quadEMTestApp
 
 #===========================
